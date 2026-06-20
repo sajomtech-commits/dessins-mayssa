@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Les dessins de Mayssa</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:system-ui,-apple-system,sans-serif;background:#fdfaf6;color:#1f2937}
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:2rem;position:relative}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,#fce7f3 0%,transparent 70%),radial-gradient(ellipse at 80% 100%,#ede9fe 0%,transparent 60%);opacity:.6}
+.hero>*{position:relative;z-index:1}
+.hero h1{font-size:clamp(2.5rem,10vw,5.5rem);font-weight:300;letter-spacing:-.02em;color:#1f2937;margin-bottom:.75rem}
+.hero h1 span{font-weight:500;background:linear-gradient(135deg,#be185d,#7e22ce);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero p{font-size:1.15rem;color:#6b7280;font-weight:300;letter-spacing:.05em}
+.hero .sep{width:60px;height:2px;background:linear-gradient(90deg,#fbcfe8,#c4b5fd);margin:1.5rem auto;border-radius:2px}
+.hero .btn{margin-top:2rem;display:inline-block;padding:.85rem 2.5rem;border-radius:999px;background:linear-gradient(135deg,#f43f5e,#a855f7);color:#fff;font-size:.95rem;font-weight:500;text-decoration:none;transition:all .3s;border:none;cursor:pointer}
+.hero .btn:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(244,114,182,.35)}
+.gallery{padding:4rem 1.5rem;max-width:1200px;margin:0 auto}
+.gallery h2{font-size:1.75rem;font-weight:300;text-align:center;color:#6b7280;margin-bottom:.5rem}
+.gallery h2 strong{font-weight:500;color:#1f2937}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.75rem;margin-top:2.5rem}
+.card{cursor:pointer;break-inside:avoid}
+.card-img{position:relative;border-radius:1.25rem;overflow:hidden;background:#f3f0eb;aspect-ratio:3/4}
+.card-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.22,1,.36,1);display:block}
+.card:hover .card-img img{transform:scale(1.04)}
+.card-info{padding:.75rem .25rem 0}
+.card-info h3{font-size:1rem;font-weight:500;margin-bottom:.15rem}
+.card-info p{font-size:.85rem;color:#9ca3af;font-weight:300}
+.modal{position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.7);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:2rem}
+.modal.open{display:flex}
+.modal-content{background:#fff;border-radius:1.5rem;max-width:700px;width:100%;max-height:90vh;overflow:auto;animation:fadeIn .3s ease}
+.modal-img{width:100%;aspect-ratio:4/3;object-fit:contain;background:#f9f6f1;border-radius:1.5rem 1.5rem 0 0}
+.modal-body{padding:1.75rem}
+.modal-body h2{font-size:1.5rem;font-weight:500;margin-bottom:.5rem}
+.modal-body .date{font-size:.85rem;color:#9ca3af;margin-bottom:1rem}
+.modal-body p{color:#6b7280;line-height:1.6;font-weight:300}
+.modal-close{position:absolute;top:2.5rem;right:2.5rem;width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.9);border:none;font-size:1.25rem;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#1f2937;transition:all .2s}
+.modal-close:hover{background:#fff;transform:scale(1.1)}
+@keyframes fadeIn{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}
+.auth{position:fixed;bottom:2rem;right:2rem;z-index:50}
+.auth-btn{width:56px;height:56px;border-radius:50%;border:none;background:linear-gradient(135deg,#f43f5e,#a855f7);color:#fff;font-size:1.5rem;cursor:pointer;box-shadow:0 4px 20px rgba(244,114,182,.4);transition:all .3s;display:flex;align-items:center;justify-content:center}
+.auth-btn:hover{transform:scale(1.1);box-shadow:0 8px 32px rgba(244,114,182,.5)}
+.login-modal{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.5);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;padding:1.5rem}
+.login-modal.open{display:flex}
+.login-card{background:#fff;border-radius:1.5rem;padding:2.5rem;width:100%;max-width:400px;animation:fadeIn .3s ease}
+.login-card h2{font-size:1.5rem;font-weight:500;margin-bottom:.25rem}
+.login-card .sub{color:#9ca3af;font-size:.9rem;margin-bottom:1.5rem}
+.login-card input{width:100%;padding:.85rem 1rem;border:2px solid #f3f0eb;border-radius:.75rem;margin-bottom:.75rem;font-size:.95rem;outline:none;transition:border-color .2s}
+.login-card input:focus{border-color:#c4b5fd}
+.login-card button{width:100%;padding:.85rem;border:none;border-radius:.75rem;background:linear-gradient(135deg,#f43f5e,#a855f7);color:#fff;font-size:1rem;font-weight:500;cursor:pointer;transition:all .3s}
+.login-card button:hover{opacity:.9}
+.login-card .error{color:#ef4444;font-size:.85rem;margin-bottom:.75rem}
+.add-modal{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.5);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;padding:1.5rem}
+.add-modal.open{display:flex}
+.add-card{background:#fff;border-radius:1.5rem;padding:2rem;width:100%;max-width:480px;max-height:85vh;overflow-y:auto;animation:fadeIn .3s ease;position:relative}
+.add-card h2{font-size:1.35rem;font-weight:500;margin-bottom:1.25rem}
+.add-card input,.add-card textarea{width:100%;padding:.75rem 1rem;border:2px solid #f3f0eb;border-radius:.75rem;margin-bottom:.75rem;font-size:.9rem;outline:none;transition:border-color .2s;font-family:inherit;resize:none}
+.add-card input:focus,.add-card textarea:focus{border-color:#c4b5fd}
+.add-card textarea{min-height:80px}
+.add-card button{width:100%;padding:.85rem;border:none;border-radius:.75rem;background:linear-gradient(135deg,#f43f5e,#a855f7);color:#fff;font-size:.95rem;font-weight:500;cursor:pointer;transition:all .3s}
+.add-card button:hover{opacity:.9}
+.add-card button:disabled{opacity:.5;cursor:default}
+.add-card .close-btn{position:absolute;top:1.25rem;right:1.25rem;background:none;border:none;font-size:1.25rem;cursor:pointer;color:#9ca3af;padding:.25rem}
+.loading{display:flex;align-items:center;justify-content:center;padding:4rem;color:#9ca3af;font-weight:300}
+.spinner{width:36px;height:36px;border:3px solid #f3f0eb;border-top-color:#a855f7;border-radius:50%;animation:spin .8s linear infinite;margin-right:.75rem}
+@keyframes spin{to{transform:rotate(360deg)}}
+.success{text-align:center;padding:2rem}
+.success .check{width:56px;height:56px;border-radius:50%;background:#d1fae5;color:#059669;display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin:0 auto 1rem}
+.empty{text-align:center;padding:4rem;color:#9ca3af}
+.bar{position:fixed;bottom:2rem;right:2rem;z-index:50;display:flex;flex-direction:column;align-items:flex-end;gap:.75rem}
+.bar .add{width:56px;height:56px;border-radius:50%;border:none;background:linear-gradient(135deg,#f43f5e,#a855f7);color:#fff;font-size:1.5rem;cursor:pointer;box-shadow:0 4px 20px rgba(244,114,182,.4);transition:all .3s;display:flex;align-items:center;justify-content:center}
+.bar .add:hover{transform:scale(1.1)}
+.bar .out{padding:.5rem 1rem;border-radius:999px;border:1px solid #e5e7eb;background:rgba(255,255,255,.85);backdrop-filter:blur(8px);font-size:.8rem;color:#6b7280;cursor:pointer;transition:all .2s}
+.bar .out:hover{background:#fff;color:#1f2937}
+footer{text-align:center;padding:2rem;color:#d1d5db;font-size:.85rem;font-weight:300;border-top:1px solid #f3f0eb;margin-top:2rem}
+footer span{color:#f43f5e}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+const cfg={
+  supabaseUrl:'https://cmkcivmgdrzjlaqgldbi.supabase.co',
+  anonKey:'eyJhbG...ZzMQ',
+  authEmail:'***art()
+
+const demo=[
+{id:'d1',title:'Premier dessin',description:'Un joli dessin réalisé avec amour',image_url:'https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=600&q=80',created_at:'2026-06-01'},
+{id:'d2',title:'Mon chat',description:'Mon chat qui dort paisiblement',image_url:'https://images.unsplash.com/photo-1574158622682-e40e69881006?w=600&q=80',created_at:'2026-06-03'},
+{id:'d3',title:'Fée des fleurs',description:'Une fée magique dans le jardin',image_url:'https://images.unsplash.com/photo-1549490349-8643362247b5?w=600&q=80',created_at:'2026-06-05'},
+{id:'d4',title:'Personnage manga',description:'Mon personnage de manga préféré',image_url:'https://images.unsplash.com/photo-1618336753974-aae8e04506aa?w=600&q=80',created_at:'2026-06-07'},
+{id:'d5',title:'Sous l\'océan',description:'Le monde sous-marin que j\'imagine',image_url:'https://images.unsplash.com/photo-1558470598-a5dda9640f68?w=600&q=80',created_at:'2026-06-10'},
+{id:'d6',title:'Papillons',description:'Des papillons dans mon jardin',image_url:'https://images.unsplash.com/photo-1598128558393-70ff21433be0?w=600&q=80',created_at:'2026-06-12'},
+{id:'d7',title:'Arc-en-ciel magique',description:'Un arc-en-ciel qui brille',image_url:'https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?w=600&q=80',created_at:'2026-06-14'},
+{id:'d8',title:'Licorne',description:'Ma licorne dans la forêt enchantée',image_url:'https://images.unsplash.com/photo-1534447932265-2d30cc4d5a39?w=600&q=80',created_at:'2026-06-16'}
+]
+let sb,session=null,drawings=[],loading=true,modal=null,loginOpen=false,addOpen=false,addSuccess=false,addError='',loginError=''
+
+async function initSupabase(){
+  try{
+    const{createClient}=await import(cfg.supabaseUrl+'/functions/v1/supabase-js')
+    sb=createClient(cfg.supabaseUrl,cfg.anonKey)
+    const{data:{s}}=await sb.auth.getSession()
+    if(s?.user?.email===cfg.authEmail)session=s.user.email
+  }catch{}
+}
+function fmt(d){try{return new Date(d).toLocaleDateString('fr-FR',{day:'numeric',month:'long',year:'numeric'})}catch{return d}}
+
+async function load(){
+  loading=true;render()
+  try{
+    if(!sb)await initSupabase()
+    const{data}=await sb.from('drawings').select('*').order('created_at',{ascending:false})
+    drawings=data?.length?data:demo
+  }catch{drawings=demo}
+  loading=false;render()
+}
+
+function render(){
+  const app=document.getElementById('app')
+  app.innerHTML=`
+<div class="hero">
+  <h1>Les dessins<br/><span>de Mayssa</span></h1>
+  <div class="sep"></div>
+  <p>Artiste, dessinatrice &amp; créatrice</p>
+  <button class="btn" onclick="document.getElementById('g').scrollIntoView({behavior:'smooth'})">Découvrir</button>
+</div>
+<section id="g" style="padding:2rem 1.5rem;max-width:1200px;margin:0 auto">
+  <h2 style="font-size:1.5rem;font-weight:300;text-align:center;color:#6b7280">Mes <strong style="font-weight:500;color:#1f2937">créations</strong></h2>
+  ${loading?'<div class="loading"><div class="spinner"></div>Chargement...</div>':drawings.length===0?'<div class="empty">Aucun dessin</div>':`
+  <div class="grid">
+    ${drawings.map(d=>`
+    <div class="card" onclick="openModal('${d.id}')">
+      <div class="card-img"><img src="${d.image_url}" alt="${d.title.replace(/'/g,'')}" loading="lazy"/></div>
+      <div class="card-info"><h3>${d.title}</h3><p>${d.category||'Dessin'}</p></div>
+    </div>`).join('')}
+  </div>`}
+</section>
+<footer>Fait avec <span>♥</span> par Mayssa &copy; 2026</footer>
+${session?`
+<div class="bar">
+  <button class="add" onclick="openAdd()">+</button>
+  <button class="out" onclick="logout()">Se déconnecter</button>
+</div>`:`
+<div class="auth">
+  <button class="auth-btn" onclick="openLogin()">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4M10 17l5-5-5-5M13 12H3"/></svg>
+  </button>
+</div>`}
+<div class="modal${modal?' open':''}" id="mM" onclick="if(event.target===this)closeModal()">${modal?`
+<button class="modal-close" onclick="closeModal()">✕</button>
+<div class="modal-content">
+  <img class="modal-img" src="${modal.image_url}" alt="${modal.title.replace(/'/g,'')}"/>
+  <div class="modal-body">
+    <h2>${modal.title}</h2>
+    <div class="date">${fmt(modal.created_at)}</div>
+    <p>${modal.description||''}</p>
+  </div>
+</div>`:''}</div>
+<div class="login-modal${loginOpen?' open':''}" id="lM" onclick="if(event.target===this)closeLogin()">
+  <div class="login-card">
+    <h2>Connexion</h2>
+    <p class="sub">Espace réservé à Mayssa</p>
+    ${loginError?'<div class="error">'+loginError+'</div>':''}
+    <input type="email" id="lE" placeholder="Email" value="myssatou15@gmail.com"/>
+    <input type="password" id="lP" placeholder="Mot de passe"/>
+    <button onclick="handleLogin()">Se connecter</button>
+  </div>
+</div>
+<div class="add-modal${addOpen?' open':''}" id="aM" onclick="if(event.target===this)closeAdd()">
+  <div class="add-card">
+    <button class="close-btn" onclick="closeAdd()">✕</button>
+    ${addSuccess?'<div class="success"><div class="check">✓</div><p style="font-weight:500">Dessin ajouté !</p><p style="color:#9ca3af;font-size:.9rem;margin-top:.25rem">Il apparaît dans la galerie</p></div>':`
+    <h2>Ajouter un dessin</h2>
+    ${addError?'<div style="color:#ef4444;font-size:.85rem;margin-bottom:.75rem">'+addError+'</div>':''}
+    <input type="text" id="aT" placeholder="Titre du dessin"/>
+    <input type="url" id="aU" placeholder="URL de l'image"/>
+    <details style="margin-bottom:.75rem"><summary style="font-size:.85rem;color:#9ca3af;cursor:pointer">Ou choisir un fichier</summary>
+      <input type="file" id="aF" accept="image/*" style="margin-top:.5rem;font-size:.85rem"/>
+    </details>
+    <textarea id="aD" placeholder="Description (optionnelle)"></textarea>
+    <button id="aB" onclick="handleAdd()">Ajouter</button>`}
+  </div>
+</div>`
+}
+
+window.openModal=(id)=>{m=m.find(d=>d.id===id);render()}
+window.closeModal=()=>{modal=null;render()}
+window.openLogin=()=>{loginOpen=true;loginError='';render()}
+window.closeLogin=()=>{loginOpen=false;loginError='';render()}
+window.openAdd=()=>{addOpen=true;addSuccess=false;addError='';render()}
+window.closeAdd=()=>{addOpen=false;addSuccess=false;addError='';render()}
+window.logout=()=>{session=null;drawings=demo;render()}
+
+window.handleLogin=async()=>{
+  const e=document.getElementById('lE').value
+  const p=document.getElementById('lP').value
+  if(e!==cfg.authEmail){loginError='Email non autorisé';render();return}
+  try{
+    const{error}=await sb.auth.signInWithPassword({email:e,password:p})
+    if(error){loginError='Mot de passe incorrect';render();return}
+  }catch{loginError='Erreur de connexion';render();return}
+  session=e;loginOpen=false;loginError='';load()
+}
+
+window.handleAdd=async()=>{
+  const t=document.getElementById('aT').value.trim()
+  const u=document.getElementById('aU').value.trim()
+  const d=document.getElementById('aD').value.trim()
+  const f=document.getElementById('aF')
+  if(!t||(!u&&!f.files[0])){addError='Ajoute un titre et une image';render();return}
+  const btn=document.getElementById('aB');btn.disabled=true;btn.textContent='Ajout...'
+  try{
+    let iu=u
+    if(f.files[0]){
+      const ext=f.files[0].name.split('.').pop()
+      const nm=Date.now()+'.'+ext
+      const{error:ue}=await sb.storage.from('drawings').upload(nm,f.files[0])
+      if(!ue){const{data:{publicUrl}}=sb.storage.from('drawings').getPublicUrl(nm);iu=publicUrl}
+    }
+    if(!iu)iu='https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=600&q=80'
+    await sb.from('drawings').insert({title:t,description:d||'',category:'Dessin',technique:'',image_url:iu,author_email:session})
+    addSuccess=true;render()
+    setTimeout(()=>{addOpen=false;addSuccess=false;load()},1500)
+  }catch(e){addError='Erreur lors de l\'ajout';render()}
+}
+
+load()
+</script>
+</body>
+</html>
