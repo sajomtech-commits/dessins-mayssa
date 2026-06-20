@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fce7f3" />
+      <stop offset="100%" stop-color="#ede9fe" />
+    </linearGradient>
+    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fcd34d" />
+      <stop offset="100%" stop-color="#d97706" />
+    </linearGradient>
+  </defs>
+  <circle cx="50" cy="50" r="48" fill="url(#grad)" stroke="url(#gold)" stroke-width="2"/>
+  <text x="50" y="38" text-anchor="middle" font-family="serif" font-size="22" fill="#a855f7" font-weight="bold">M</text>
+  <line x1="30" y1="48" x2="70" y2="48" stroke="#fcd34d" stroke-width="1.5" opacity="0.6"/>
+  <text x="50" y="70" text-anchor="middle" font-family="serif" font-size="12" fill="#be185d" font-style="italic">✦</text>
+  <circle cx="23" cy="28" r="2" fill="#fcd34d" opacity="0.8">
+    <animate attributeName="opacity" values="0.4;1;0.4" dur="2s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="77" cy="72" r="2" fill="#fcd34d" opacity="0.8">
+    <animate attributeName="opacity" values="0.4;1;0.4" dur="3s" repeatCount="indefinite"/>
+  </circle>
+</svg>
