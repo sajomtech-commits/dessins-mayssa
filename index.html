@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Les dessins de Mayssa</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:system-ui,-apple-system,sans-serif;background:linear-gradient(135deg,#fdf2f8,#faf5ff,#fefce8);min-height:100vh;color:#1f2937}
+.container{max-width:1200px;margin:0 auto;padding:2rem 1rem}
+.hero{text-align:center;padding:4rem 1rem 2rem}
+.hero h1{font-size:clamp(2.5rem,8vw,5rem);font-weight:800;background:linear-gradient(135deg,#f43f5e,#a855f7);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1.1}
+.hero p{font-size:1.25rem;color:#6b7280;margin-top:1rem}
+.hero .sub{font-size:1.1rem;color:#9ca3af;margin-top:.5rem}
+.badge{display:inline-block;padding:.5rem 1rem;border-radius:9999px;background:rgba(255,255,255,.7);border:1px solid #fbcfe8;font-size:.875rem;color:#7e22ce;margin-bottom:1.5rem}
+.tags{margin:2rem 0;display:flex;flex-wrap:wrap;justify-content:center;gap:.75rem}
+.tags span{padding:.5rem 1rem;border-radius:9999px;background:rgba(255,255,255,.6);border:1px solid #fce7f3;font-size:.875rem;color:#6b7280}
+.gallery{padding:3rem 0}
+.gallery h2{font-size:2rem;font-weight:700;text-align:center;background:linear-gradient(135deg,#be185d,#7e22ce);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:1.5rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.5rem}
+.card{background:rgba(255,255,255,.7);backdrop-filter:blur(8px);border-radius:1.5rem;overflow:hidden;border:1px solid rgba(255,255,255,.5);box-shadow:0 4px 16px rgba(244,114,182,.15);transition:all .3s}
+.card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(244,114,182,.2)}
+.card-img{aspect-ratio:3/4;overflow:hidden}
+.card-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.card:hover .card-img img{transform:scale(1.08)}
+.card-body{padding:1rem}
+.card-body h3{font-weight:600;color:#1f2937;margin-bottom:.25rem}
+.card-body .tech{font-size:.875rem;color:#9ca3af}
+.card .cat{position:absolute;top:.75rem;left:.75rem;padding:.25rem .75rem;border-radius:9999px;background:rgba(255,255,255,.8);font-size:.75rem;font-weight:500;color:#7e22ce}
+.card-wrap{position:relative}
+footer{text-align:center;padding:2rem;color:#9ca3af;font-size:.875rem;border-top:1px solid #fce7f3;margin-top:3rem}
+footer .heart{color:#f43f5e;display:inline-block}
+.waiting{text-align:center;padding:3rem;color:#6b7280}
+.waiting svg{width:4rem;height:4rem;margin:0 auto 1rem;color:#d1d5db}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="hero">
+<div class="badge">✨ Bienvenue dans mon univers</div>
+<h1>Les dessins<br/>de Mayssa</h1>
+<p>Artiste, dessinatrice et créatrice</p>
+<div class="sub">🎨 ✨ 🦄</div>
+<div class="tags">
+<span>🎨 Dessin</span><span>🖌️ Peinture</span><span>📚 Manga</span><span>🐾 Animaux</span><span>✨ Création</span>
+</div>
+<p style="margin-top:2rem;color:#a855f7;font-weight:500;">Le site React complet est en cours de déploiement... ⏳</p>
+</div>
+<div class="gallery">
+<h2>Mes créations</h2>
+<div class="grid">
+<div class="card-wrap"><div class="card">
+<div class="card-img"><img src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=400&q=80" alt="Dessin" loading="lazy"/></div>
+<div class="card-body"><h3>Mon premier dessin</h3><p class="tech">Crayons de couleur</p></div>
+<span class="cat">Dessin</span>
+</div></div>
+<div class="card-wrap"><div class="card">
+<div class="card-img"><img src="https://images.unsplash.com/photo-1574158622682-e40e69881006?w=400&q=80" alt="Chat" loading="lazy"/></div>
+<div class="card-body"><h3>Mon chaton</h3><p class="tech">Feutres</p></div>
+<span class="cat">Animaux</span>
+</div></div>
+<div class="card-wrap"><div class="card">
+<div class="card-img"><img src="https://images.unsplash.com/photo-1549490349-8643362247b5?w=400&q=80" alt="Fee" loading="lazy"/></div>
+<div class="card-body"><h3>Fée des fleurs</h3><p class="tech">Aquarelle</p></div>
+<span class="cat">Création</span>
+</div></div>
+<div class="card-wrap"><div class="card">
+<div class="card-img"><img src="https://images.unsplash.com/photo-1618336753974-aae8e04506aa?w=400&q=80" alt="Manga" loading="lazy"/></div>
+<div class="card-body"><h3>Personnage manga</h3><p class="tech">Marqueurs</p></div>
+<span class="cat">Manga</span>
+</div></div>
+<div class="card-wrap"><div class="card">
+<div class="card-img"><img src="https://images.unsplash.com/photo-1558470598-a5dda9640f68?w=400&q=80" alt="Ocean" loading="lazy"/></div>
+<div class="card-body"><h3>Sous l'océan</h3><p class="tech">Peinture acrylique</p></div>
+<span class="cat">Peinture</span>
+</div></div>
+<div class="card-wrap"><div class="card">
+<div class="card-img"><img src="https://images.unsplash.com/photo-1598128558393-70ff21433be0?w=400&q=80" alt="Papillons" loading="lazy"/></div>
+<div class="card-body"><h3>Papillons</h3><p class="tech">Pastels</p></div>
+<span class="cat">Dessin</span>
+</div></div>
+<div class="card-wrap"><div class="card">
+<div class="card-img"><img src="https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?w=400&q=80" alt="Arc-en-ciel" loading="lazy"/></div>
+<div class="card-body"><h3>Arc-en-ciel magique</h3><p class="tech">Crayons de couleur</p></div>
+<span class="cat">Création</span>
+</div></div>
+<div class="card-wrap"><div class="card">
+<div class="card-img"><img src="https://images.unsplash.com/photo-1534447932265-2d30cc4d5a39?w=400&q=80" alt="Licorne" loading="lazy"/></div>
+<div class="card-body"><h3>Licorne dans la forêt</h3><p class="tech">Aquarelle</p></div>
+<span class="cat">Création</span>
+</div></div>
+</div>
+</div>
+<footer>
+<p>Fait avec <span class="heart">♥</span> par Mayssa</p>
+<p style="margin-top:.5rem;font-size:.75rem;">&copy; 2026 — Les dessins de Mayssa</p>
+</footer>
+</div>
+</body>
+</html>
